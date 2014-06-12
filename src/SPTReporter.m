@@ -2,6 +2,10 @@
 #import "SPTNestedReporter.h"
 #import "XCTestObserver+Specta.h"
 
+#ifndef SPECTA_REPORTER_CLASS_COMPILE
+#define SPECTA_REPORTER_CLASS_COMPILE "SPTNestedReporter"
+#endif
+
 @interface SPTReporter ()
 
 @property (nonatomic, strong, readwrite) NSArray *runStack;
@@ -30,7 +34,7 @@
     }
   }
 
-  return [[SPTNestedReporter alloc] init];
+  return [[NSClassFromString(@SPECTA_REPORTER_CLASS_COMPILE) alloc] init];
 }
 
 #pragma mark - Run Stack
